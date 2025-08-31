@@ -93,9 +93,11 @@ const CourseDetails = () => {
 
 				{/* left column */}
 				<div className="max-w-xl z-10 text-gray-500">
-					<h1 className="md:text-course-details-heading-large text-course-details-heading-small font-semibold text-gray-800">
-						{courseData.courseTitle}
-					</h1>
+					<h1 className="text-3xl md:text-5xl font-bold text-gray-900 relative inline-block">
+  {courseData.courseTitle}
+  <span className="absolute left-0 -bottom-2 w-16 h-1 bg-gradient-to-r from-orange-400 to-pink-500 rounded"></span>
+</h1>
+
 					<p
 						className="pt-4 md:text-base text-sm"
 						dangerouslySetInnerHTML={{
@@ -250,103 +252,104 @@ const CourseDetails = () => {
 				</div>
 
 				{/* right column */}
-				<div className="max-w-course-card z-10 shadow-custom-card rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[420px]">
-					{playerData ? (
-						<YouTube
-							videoId={playerData.videoId}
-							opts={{ playerVars: { autoplay: 1 } }}
-							iframeClassName="w-full aspect-video"
-						/>
-					) : (
-						<img src={courseData.courseThumbnail} alt="courseThumbnail" />
-					)}
+				<div className="max-w-course-card z-10 shadow-lg rounded-2xl overflow-hidden bg-white min-w-[300px] sm:min-w-[420px] transition-transform hover:scale-105 duration-300">
+  {playerData ? (
+    <YouTube
+      videoId={playerData.videoId}
+      opts={{ playerVars: { autoplay: 1 } }}
+      iframeClassName="w-full aspect-video"
+    />
+  ) : (
+    <img src={courseData.courseThumbnail} alt="courseThumbnail" className="w-full object-cover" />
+  )}
 
-					<div className="p-5">
-						<div className="flex items-center gap-2">
-							<img
-								className="w-3.5"
-								src={assets.time_left_clock_icon}
-								alt="time_left_clock_icon"
-							/>
+  <div className="p-6 flex flex-col gap-4">
+    {/* Countdown Banner */}
+    <div className="flex items-center gap-2 bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-medium w-max">
+      <img className="w-4" src={assets.time_left_clock_icon} alt="clock" />
+      <span>5 days left at this price!</span>
+    </div>
 
-							<p className="text-red-500">
-								<span className="font-medium">5 days</span> left at this price!
-							</p>
-						</div>
+    {/* Price Section */}
+    <div className="flex flex-col md:flex-row md:items-end md:gap-4 gap-2">
+      <p className="text-3xl md:text-4xl font-bold text-gray-800">
+        {currency}{" "}
+        {(
+          courseData.coursePrice -
+          (courseData.discount * courseData.coursePrice) / 100
+        ).toFixed(2)}
+      </p>
+      <p className="text-gray-500 line-through">{currency} {courseData.coursePrice}</p>
+      <p className="text-gray-500">{currency} {courseData.discount}% off</p>
+    </div>
 
-						<div className="flex gap-3 items-center pt-2">
-							<p className="text-gray-800 md:text-4xl text-2xl font-semibold">
-								{currency}{" "}
-								{(
-									courseData.coursePrice -
-									(courseData.discount * courseData.coursePrice) / 100
-								).toFixed(2)}
-							</p>
-							<p className="md:text-lg text-gray-500 line-through">
-								{currency} {courseData.coursePrice}{" "}
-							</p>
-							<p className="md:text-lg text-gray-500">
-								{currency} {courseData.discount}% off{" "}
-							</p>
-						</div>
+    {/* Stats Section */}
+    <div className="flex items-center gap-4 text-gray-500 text-sm md:text-base">
+      <div className="flex items-center gap-1">
+        <img src={assets.star} alt="star" className="w-4" />
+        <p>{calculateRating(courseData)}</p>
+      </div>
 
-						<div className="flex items-center text-sm md:text-default gap-4 pt-2 md:pt-4 text-gray-500">
-							<div className="flex items-center gap-1">
-								<img src={assets.star} alt="star icon" />
-								<p>{calculateRating(courseData)}</p>
-							</div>
+      <div className="h-4 w-px bg-gray-300"></div>
 
-							<div className="h-4 w-px bg-gray-500/40"></div>
+      <div className="flex items-center gap-1">
+        <img src={assets.time_clock_icon} alt="duration" className="w-4" />
+        <p>{calculateCourseDuration(courseData)}</p>
+      </div>
 
-							<div className="flex items-center gap-1">
-								<img src={assets.time_clock_icon} alt="time_clock_icon" />
-								<p>{calculateCourseDuration(courseData)}</p>
-							</div>
+      <div className="h-4 w-px bg-gray-300"></div>
 
-							<div className="h-4 w-px bg-gray-500/40"></div>
+      <div className="flex items-center gap-1">
+        <img src={assets.lesson_icon} alt="lessons" className="w-4" />
+        <p>{calculateNoOfLectures(courseData)} lessons</p>
+      </div>
+    </div>
 
-							<div className="flex items-center gap-1">
-								<img src={assets.lesson_icon} alt="lesson_icon" />
-								<p>{calculateNoOfLectures(courseData)} lessons</p>
-							</div>
-						</div>
+    {/* Enrollment Button */}
+    <div className="pt-4">
+      {isAlreadyEnrolled ? (
+        <p className="w-full py-3 text-center bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-medium rounded-lg">
+          Already Enrolled
+        </p>
+      ) : courseData.coursePrice - (courseData.discount * courseData.coursePrice) / 100 === 0 ? (
+        <p className="w-full py-3 text-center bg-gradient-to-r from-green-400 to-teal-400 text-white font-medium rounded-lg">
+          Free
+        </p>
+      ) : (
+        <button
+          onClick={enrollCourse}
+          className="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-medium rounded-lg hover:scale-105 transition-transform duration-200"
+        >
+          Enroll Now
+        </button>
+      )}
+    </div>
 
-						<div
-							// onClick={enrollCourse}
-							
-						>
-							{isAlreadyEnrolled
-								? <p className="md:mt-6 mt-4 w-full py-3 rounded text-center  bg-blue-600 text-white font-medium"> Already Enrolled </p>
-								: courseData.coursePrice -
-										(courseData.discount * courseData.coursePrice) / 100 ===
-								  0.00
-								? <p className="md:mt-6 mt-4 w-full py-3 rounded text-center  bg-blue-600 text-white font-medium"> Free </p>
-								: <button onClick={enrollCourse} className="md:mt-6 mt-4 w-full py-3 rounded text-center  bg-blue-600 text-white font-medium"> Enroll Now</button>}
-						</div>
+    {/* Optional Links */}
+    {isAlreadyEnrolled && (
+      <div className="pt-2">
+        <Link to="/my-enrollments">
+          <p className="w-full py-3 text-center bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+            My Enrollments
+          </p>
+        </Link>
+      </div>
+    )}
 
-						<div >
-							{courseData.coursePrice -
-								(courseData.discount * courseData.coursePrice) / 100 ===
-							0.00 ? (
-								<p className="md:mt-6 mt-4 w-full text-center py-3 rounded  bg-blue-600 text-white font-medium">Click on Course structure </p>
-							) : isAlreadyEnrolled ? <Link  to="/my-enrollments"><p className="md:mt-6 mt-4 w-full text-center py-3 rounded  bg-blue-600 text-white font-medium">My Enrollments</p> </Link> : ""}
-						</div>
+    {/* Course Features */}
+    <div className="pt-6">
+      <p className="text-lg md:text-xl font-semibold text-gray-800">What's in the course?</p>
+      <ul className="ml-4 mt-2 list-disc text-gray-500 text-sm md:text-base space-y-1">
+        <li>Lifetime access with free updates.</li>
+        <li>Step-by-step, hands-on project guidance.</li>
+        <li>Downloadable resources and source code.</li>
+        <li>Quizzes to test your knowledge.</li>
+        <li>Certificate of completion.</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-						<div className="pt-6">
-							<p className="md:text-xl text-lg font-medium text-gray-800">
-								What's in the course?{" "}
-							</p>
-							<ul className="ml-4 pt-2 text-sm md:text-default list-disc text-gray-500">
-								<li>Lifetime access with free updates.</li>
-								<li>Step-by-step, hands-on project guidance.</li>
-								<li>Downloadable resources and source code.</li>
-								<li>Quizzes to test your knowledge.</li>
-								<li>Certificate of completion.</li>
-								<li>Quizzes to test your knowledge.</li>
-							</ul>
-						</div>
-					</div>
-				</div>
 			</div>
 
 			<Footer />

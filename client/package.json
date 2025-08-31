@@ -17,6 +17,7 @@
     "axios": "^1.11.0",
     "framer-motion": "^12.23.12",
     "humanize-duration": "^3.33.0",
+    "lucide-react": "^0.542.0",
     "phosphor-react": "^1.4.1",
     "postcss": "^8.5.6",
     "quill": "^2.0.3",

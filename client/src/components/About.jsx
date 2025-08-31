@@ -9,82 +9,72 @@ const About = () => {
 	
 	return (
 		<>
-			<div className="w-full mx-auto px-6 py-12 bg-gradient-to-b from-cyan-100/40">
-				<h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
-					About Edemy LMS
-				</h1>
-				<p className="text-lg text-gray-600 text-center mb-8">
-					Empowering learners and educators with a seamless online learning
-					experience.
-				</p>
+			<div className="w-full mx-auto px-6 py-16 bg-gradient-to-b from-orange-100 via-white to-white">
+  {/* Heading */}
+  <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-4">
+    About <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">UpSkill </span>LMS
+  </h1>
+  <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12">
+    Empowering learners and educators with a seamless online learning experience.
+  </p>
 
-				{/* Section: Our Mission */}
-				<div className=" p-8 rounded-lg shadow-lg mb-8">
-					<h2 className="text-2xl font-semibold text-gray-700 mb-4">
-						Our Mission
-					</h2>
-					<p className="text-gray-600">
-						At Edemy LMS, we strive to make education accessible and engaging
-						for everyone. Our platform bridges the gap between students and
-						educators by providing high-quality courses, interactive learning
-						tools, and an intuitive user experience.
-					</p>
-				</div>
+  {/* Mission Section */}
+  <div className="max-w-4xl mx-auto bg-white p-10 rounded-2xl shadow-lg border border-orange-100 mb-12">
+    <h2 className="text-2xl font-semibold text-gray-800 mb-3">Our Mission</h2>
+    <p className="text-gray-600 leading-relaxed">
+      At <span className="font-semibold text-orange-600">UpSkill LMS</span>, we strive to make 
+      <span className="font-medium"> education accessible and engaging</span> for everyone.  
+      We connect students and educators by providing high-quality courses,  
+      interactive tools, and an intuitive learning journey.
+    </p>
+  </div>
 
-				{/* Section: Why Choose Us */}
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-					<div className="p-6 border rounded-lg shadow-md text-center">
-						<h3 className="text-xl font-semibold text-gray-700">
-							📚 Quality Courses
-						</h3>
-						<p className="text-gray-600 mt-2">
-							Learn from expert educators through well-structured and engaging
-							courses.
-						</p>
-					</div>
-					<div className="p-6 border rounded-lg shadow-md text-center">
-						<h3 className="text-xl font-semibold text-gray-700">
-							🚀 Interactive Learning
-						</h3>
-						<p className="text-gray-600 mt-2">
-							Our platform includes real-time progress tracking, quizzes, and
-							hands-on projects.
-						</p>
-					</div>
-					<div className="p-6 border rounded-lg shadow-md text-center">
-						<h3 className="text-xl font-semibold text-gray-700">
-							🌍 Global Access
-						</h3>
-						<p className="text-gray-600 mt-2">
-							Learn anytime, anywhere, on any device with a seamless experience.
-						</p>
-					</div>
-				</div>
+  {/* Why Choose Us */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+    <div className="p-6 rounded-xl border border-orange-200 bg-white shadow-md hover:shadow-xl transition duration-300 text-center">
+      <h3 className="text-xl font-semibold text-gray-800 mb-2">📚 Quality Courses</h3>
+      <p className="text-gray-600">Learn from expert educators through structured and engaging content.</p>
+    </div>
+    <div className="p-6 rounded-xl border border-orange-200 bg-white shadow-md hover:shadow-xl transition duration-300 text-center">
+      <h3 className="text-xl font-semibold text-gray-800 mb-2">⚡ Interactive Learning</h3>
+      <p className="text-gray-600">Track progress, complete quizzes, and work on hands-on projects.</p>
+    </div>
+    <div className="p-6 rounded-xl border border-orange-200 bg-white shadow-md hover:shadow-xl transition duration-300 text-center">
+      <h3 className="text-xl font-semibold text-gray-800 mb-2">🌍 Global Access</h3>
+      <p className="text-gray-600">Learn anytime, anywhere, on any device — without limits.</p>
+    </div>
+  </div>
 
-				{/* Section: Join Us */}
-				<div className="mt-12 text-center">
-					<h2 className="text-2xl font-semibold text-gray-700 mb-4">
-						Join Edemy LMS Today
-					</h2>
-					<p className="text-gray-600 mb-6">
-						Whether you're a student looking to enhance your skills or an
-						educator wanting to share knowledge, Edemy LMS is the perfect
-						platform for you.
-					</p>
+  {/* Join Us */}
+  <div className="mt-16 text-center">
+    <h2 className="text-2xl font-bold text-gray-900 mb-3">
+      Join <span className="text-orange-600">UpSkill LMS</span> Today
+    </h2>
+    <p className="text-gray-600 mb-6 max-w-xl mx-auto">
+      Students, enhance your skills. Educators, share your expertise.  
+      Together, let’s build the future of online learning.
+    </p>
 
-					{user ? (
-						<Link to="/" className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300"> Get Startd</Link>
-					) : (
-						<button
-							onClick={() => openSignIn()}
-							className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
-						>
-							Get Started
-						</button>
-					)}
-				</div>
-			</div>
-			<Footer />
+    {user ? (
+      <Link
+        to="/"
+        className="px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-lg shadow-lg hover:opacity-90 transition"
+      >
+        Get Started
+      </Link>
+    ) : (
+      <button
+        onClick={() => openSignIn()}
+        className="px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-lg shadow-lg hover:opacity-90 transition"
+      >
+        Get Started
+      </button>
+    )}
+  </div>
+</div>
+
+<Footer />
+
 		</>
 	);
 };
