@@ -17,7 +17,7 @@ const CallToAction = () => {
       {/* Subheading */}
       <p className="text-gray-500 max-w-2xl text-sm md:text-base">
         Whether you're a student looking to enhance your skills or an educator wanting
-        to share knowledge, <span className="font-semibold text-gray-700">Edemy LMS</span>
+        to share knowledge, <span className="font-semibold text-gray-700">Upskill LMS </span>
         is the perfect platform for you.
       </p>
 

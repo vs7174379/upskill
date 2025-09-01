@@ -3,7 +3,7 @@ import { assets } from '../../assets/assets'
 
 const Companies = () => {
   return (
-    <div className="pt-16 text-center">
+    <div className="pt-16 text-center bg-top">
       {/* Heading */}
       <p className="text-sm md:text-base text-gray-600 font-medium">
         🌍 Trusted by professionals from top companies

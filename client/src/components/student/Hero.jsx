@@ -2,6 +2,7 @@ import React from 'react'
 import { assets } from '../../assets/assets'
 import SearchBar from './SearchBar'
 import { motion } from "framer-motion";
+import Companies from './Companies';
 const Hero = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full md:pt-28 pt-24 px-6 md:px-0 space-y-8 text-center bg-gradient-to-b from-orange-50 to-white relative overflow-hidden">
@@ -31,6 +32,7 @@ const Hero = () => {
 
       {/* Search Bar */}
       <SearchBar />
+      <Companies/>
     </div>
 
   )

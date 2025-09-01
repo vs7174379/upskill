@@ -40,7 +40,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`flex items-center justify-between px-6 sm:px-12 md:px-16 lg:px-32 py-4
+      className={`flex items-center justify-between px-6 sm:px-12 md:px-16 lg:px-14 py-4
   bg-gradient-to-r from-white/60 via-white/40 to-white/60 backdrop-blur-xl 
   shadow-[0_8px_30px_rgb(0,0,0,0.08)] border-b border-white/20 sticky top-0 z-50`}
     >
@@ -51,7 +51,7 @@ const Navbar = () => {
         height="70"
         viewBox="0 0 220 70"
         fill="none"
-        className="cursor-pointer hover:scale-105 transition-transform duration-300"
+        className=" cursor-pointer hover:scale-105 transition-transform duration-300"
         onClick={() => navigate("/")}
       >
         <path
